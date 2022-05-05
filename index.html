@@ -25,15 +25,39 @@
 <head>
   <script>
   var BONES = 0;
+  var SKELETONS = 0;
+  var GRINDERS = 0;
+  var ASSEMBLERS = 0;
+  
     function myFunction() {
       document.getElementById("BONES").innerHTML = BONES;
+	  document.getElementById("SKELETONS").innerHTML = SKELETONS;
+	  document.getElementById("GRINDERS").innerHTML = GRINDERS;
+	  document.getElementById("ASSEMBLERS").innerHTML = ASSEMBLERS;
     }
 	function press(button){
-	  document.getElementById("BONES").innerHTML = BONES;
+	   myFunction();
   	  if(button==1){
 		BONES++;
 	    }
-		
+	  else if(button==2){
+		if(BONES>=10){
+		  SKELETONS++;
+		  BONES -= 10;
+		}
+	  }
+	  else if(button==3){
+		if(SKELETONS>=2){
+		  GRINDERS++;
+		  SKELETONS -= 2;
+		}
+	  }
+	  else if(button==4){
+		if(GRINDERS>=2){
+		  ASSEMBLERS++;
+		  GRINDERS -= 2;
+		}
+	  }	
 	}
   </script>
 </head>
@@ -43,7 +67,10 @@
 <p>MAKE BONES</p>
 <body onload="myFunction()">
 
-  <h1>YOU HAVE <span id="BONES"></span> BONES!</h1>
+<h1>YOU HAVE <span id="BONES"></span> BONES!</h1>
+<h1>YOU HAVE <span id="SKELETONS"></span> SKELETONS!</h1>
+<h1>YOU HAVE <span id="GRINDERS"></span> GRINDERS!</h1> 
+<h1>YOU HAVE <span id="ASSEMBLERS"></span> ASSEMBLERS!</h1>   
 
 </body>
 <!--COUNT OTHER STUFF
@@ -53,9 +80,9 @@ BUTTONS ARE INVISIBLE UNTIL PREVIOUS BUTTON IS BOUGHT
 -->
 
 <button class="button button1" onclick="press(1)">BONES</button>
-<button class="button button2">SKELETONS</button>
-<button class="button button3">BONE GRINDER</button>
-<button class="button button4">SKELETON ASSEMBLER</button>
+<button class="button button2" onclick="press(2)">SKELETONS</button>
+<button class="button button3" onclick="press(3)">BONE GRINDER</button>
+<button class="button button4" onclick="press(4)">SKELETON ASSEMBLER</button>
 
 </body>
 </html>
