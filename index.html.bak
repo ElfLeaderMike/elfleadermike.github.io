@@ -52,7 +52,12 @@
 		  SKELETONS -= 2;
 		}
 	  }
-		
+	  else if(button==4){
+		if(GRINDERS>=2){
+		  ASSEMBLERS++;
+		  GRINDERS -= 2;
+		}
+	  }	
 	}
   </script>
 </head>

@@ -1,88 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.button {
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.button1 {background-color: BLACK;} 
-.button2 {background-color: BLACK;} 
-.button3 {background-color: BLACK;} 
-.button4 {background-color: BLACK;}
-
-</style>
+	<title>Board Game</title>
 </head>
-
-<head>
-  <script>
-  var BONES = 0;
-  var SKELETONS = 0;
-  var GRINDERS = 0;
-  var ASSEMBLERS = 0;
-  
-    function myFunction() {
-      document.getElementById("BONES").innerHTML = BONES;
-	  document.getElementById("SKELETONS").innerHTML = SKELETONS;
-	  document.getElementById("GRINDERS").innerHTML = GRINDERS;
-	  document.getElementById("ASSEMBLERS").innerHTML = ASSEMBLERS;
-    }
-	function press(button){
-	   myFunction();
-  	  if(button==1){
-		BONES++;
-	    }
-	  else if(button==2){
-		if(BONES>=10){
-		  SKELETONS++;
-		  BONES -= 10;
-		}
-	  }
-	  else if(button==3){
-		if(SKELETONS>=2){
-		  GRINDERS++;
-		  SKELETONS -= 2;
-		}
-	  }
-	  else if(button==4){
-		if(GRINDERS>=2){
-		  ASSEMBLERS++;
-		  GRINDERS -= 2;
-		}
-	  }	
-	}
-  </script>
-</head>
-
 <body>
-<h1>BONES</h1>
-<p>MAKE BONES</p>
-<body onload="myFunction()">
+	<div id="board">
+		<div class="square" id="square1">Start</div>
+		<div class="square" id="square2"></div>
+		<div class="square" id="square3"></div>
+		<div class="square" id="square4"></div>
+		<div class="square" id="square5"></div>
+		<div class="square" id="square6"></div>
+		<div class="square" id="square7"></div>
+		<div class="square" id="square8"></div>
+		<div class="square" id="square9"></div>
+		<div class="square" id="square10"></div>
+		<div class="square" id="square11"></div>
+		<div class="square" id="square12"></div>
+		<div class="square" id="square13"></div>
+		<div class="square" id="square14"></div>
+		<div class="square" id="square15"></div>
+		<div class="square" id="square16">Finish</div>
+	</div>
 
-<h1>YOU HAVE <span id="BONES"></span> BONES!</h1>
-<h1>YOU HAVE <span id="SKELETONS"></span> SKELETONS!</h1>
-<h1>YOU HAVE <span id="GRINDERS"></span> GRINDERS!</h1> 
-<h1>YOU HAVE <span id="ASSEMBLERS"></span> ASSEMBLERS!</h1>   
+	<button id="roll-button">Roll Dice</button>
 
-</body>
-<!--COUNT OTHER STUFF
-LIST IT ALL OUT
-COST OF BUYING STUFF UNDER BUTTONS
-BUTTONS ARE INVISIBLE UNTIL PREVIOUS BUTTON IS BOUGHT
--->
+	<script>
+		// Code for rolling the dice and moving the player
+		var currentSquare = 1;
 
-<button class="button button1" onclick="press(1)">BONES</button>
-<button class="button button2" onclick="press(2)">SKELETONS</button>
-<button class="button button3" onclick="press(3)">BONE GRINDER</button>
-<button class="button button4" onclick="press(4)">SKELETON ASSEMBLER</button>
+		function rollDice() {
+			var rollResult = Math.floor(Math.random() * 6) + 1;
+			alert("You rolled a " + rollResult);
+
+			currentSquare += rollResult;
+			if (currentSquare > 16) {
+				alert("You won!");
+				currentSquare = 16;
+			}
+
+			var currentSquareElement = document.getElementById("square" + currentSquare);
+			currentSquareElement.classList.add("player");
+
+			var previousSquareElement = document.getElementById("square" + (currentSquare - rollResult));
+			previousSquareElement.classList.remove("player");
+		}
+
+		document.getElementById("roll-button").addEventListener("click", rollDice);
+	</script>
 
 </body>
 </html>
