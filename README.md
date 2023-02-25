@@ -1,1 +1,2 @@
-# I don't know why i made this
+# Mike's crappy website
+This will go nowhere good
